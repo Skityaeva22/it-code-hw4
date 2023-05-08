@@ -9,11 +9,7 @@
 
 <body>
     <div class="form" id="form">
-        <a href="info.html"><h1 title=
-    "Сначала укажите данные и отправьте их.
-     Затем введите координаты по кнопке Запись.
-     Наименования координат указаны на модальной форме">
-        Введите свой адрес</h1></a>
+        <h1>Введите свой адрес</h1>
     <p>Регион:</p>
     <input type="text" class="region" name="" id="textInput" value="Челябинская область" title="Необязательное поле"/>
     <div id="msg"></div>
@@ -30,24 +26,16 @@
     <input type="text" class="room" name="" id="textInput4" value="" title="Необязательное поле"/>
     <div id="msg4"></div>
     <br><button type="submit" id="put" class="put_button" onclick="formValidation()">Отправить</button></br>
-    <br><button type="submit" id="coord" class="coord_button" onclick="Coord_Find()">Запись координат</button></br>
     <div id="my_modal" class="modal">
         <div class="modal_content">
           <span class="close_modal_window">×</span>
           <p class="head_modal">Погода по координатам</p>
           <hr>
-          <p class="package-name">---</p>
+          <p class="address"></p>
           <hr>
-    
-          <p class="price">&deg;</p>
-          <p class="disclaimer">---</p>
+          <p class="temp"></p>
           <hr>
-          <p>Ширина "geo_lat":</p>
-          <input type="text" class="сoord" id="geo_lat">
-          <p>Долгота "geo_lon":</p>
-          <input type="text" class="сoord" id="geo_lon">
           <div></div>
-          <br><button id="coord_find" class="button-primary" onclick="Coord_Find()">Погода</button></br>
           <br><button id="coord_find" class="close_window" onclick="Close_window()">Закрыть</button></br>
         </div>
     </div>

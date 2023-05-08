@@ -4,25 +4,24 @@ let townInput = document.getElementById("textInput1");
 let streetInput = document.getElementById("textInput2");
 let houseInput = document.getElementById("textInput3");
 let roomInput = document.getElementById("textInput4");
+var geo_lat = "";
+var geo_lon = "";
 
-if (form){
-    form.addEventListener("submit", (e) => {
-        e.preventDefault();
-        formValidation();
-      });
-}
 
 // проверка вводимой информации. Заголовок задания не должен быть пустым
 let formValidation = () => {
   if (townInput.value === "") {
       msg1.innerHTML = "Заполните поле!";
       console.log("Запись провалена");
+      return false;
     } else if (streetInput.value === ""){
       msg2.innerHTML = "Заполните поле!";
       console.log("Запись провалена");
+      return false;
     } else if (houseInput.value === ""){
       msg3.innerHTML = "Заполните поле!";
       console.log("Запись провалена");
+      return false;
     } else{
       msg.innerHTML = "";
       msg1.innerHTML = "";
@@ -67,15 +66,13 @@ let CleanAll = () =>
 
 (() => {
   data = JSON.parse(localStorage.getItem("data")) || [];
-  console.log(data);
 })();
-
-let a = 1;
 
 let FindAll = () => {
   var url = "https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/address";
   var token = "0cdfd79774bc6eaf02e906349eab624342c1844d";
   var query = adress;
+  console.log(query)
 
 var options = {
     method: "POST",
@@ -89,20 +86,26 @@ var options = {
 }
 
 fetch(url, options)
-.then(response => response.text())
-.then(result => console.log(result))
-.catch(error => console.log("error", error), a = 0);
+.then(response =>{
+    response.json()
+.then(r => {
+    if (r.suggestions.length>0){
+        geo_lat=r.suggestions[0].data.geo_lat
+        geo_lon=r.suggestions[0].data.geo_lon
+        Coord_Find()
+    }
+    }
+)
+})
+
+.catch(error => {
+    console.log("error", error)
+});
 }
 
-var geo_lat = "";
-var geo_lon = "";
 
-let Coord_Find = () =>{
-  geo_lat = "";
-  geo_lon = "";
-  if (!a == 1){
-    let geo_lat = document.getElementById('geo_lat').value;
-    let geo_lon = document.getElementById('geo_lon').value;
+
+function Coord_Find(){
 
     fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${geo_lat}&lon=${geo_lon}&appid=70f3a9c2d617493de79c5fec2b5612c5`)
     .then(function(resp) {
@@ -110,25 +113,23 @@ let Coord_Find = () =>{
     })
     .then(function(data) {
       console.log(data);
-      document.querySelector('.package-name').textContent = data.name;
-      document.querySelector('.price').innerHTML = Math.round(data.main.temp - 273) + '&deg;';
-      document.querySelector('.disclaimer').textContent = data.weather[0]['main'];
+      document.querySelector('.address').textContent = data.name;
+      document.querySelector('.temp').textContent = Math.round(data.main.temp - 273) + '°';
+        modal.style.display = "block";
     })
     .catch(function(e) {
       console.log(e)
     });
 
-  } else{
-    console.log('Ошибка в координатах');
-  }
 } 
 
 var modal = document.getElementById("my_modal");
-var btn = document.getElementById("coord");
+var btn = document.getElementById("put");
 var span = document.getElementsByClassName("close_modal_window")[0];
 
-btn.onclick = function () {
-   modal.style.display = "block";
+
+btn.onclick=function(){
+    formValidation()
 }
 
 span.onclick = function () {
