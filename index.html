@@ -1,0 +1,45 @@
+<!DOCTYPE html> 
+<html lang="Ru"> 
+
+<head> 
+ <meta charset="UTF-8"> 
+ <title>4 задание</title> 
+ <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="form" id="form">
+        <h1>Введите свой адрес</h1>
+    <p>Регион:</p>
+    <input type="text" class="region" name="" id="textInput" value="Челябинская область" title="Необязательное поле"/>
+    <div id="msg"></div>
+    <p>Город:</p>
+    <input type="text" class="town" name="" id="textInput1" value="Челябинск" title="Обязательное поле"/>
+    <div id="msg1"></div>
+    <p>Улица:</p>
+    <input type="text" class="street" name="" id="textInput2" value="Полярная" title="Обязательное поле"/>
+    <div id="msg2"></div>
+    <p>Номер дома:</p>
+    <input type="text" class="house" name="" id="textInput3" value="61" title="Обязательное поле"/>
+    <div id="msg3"></div>
+    <p>Номер квартиры:</p>
+    <input type="text" class="room" name="" id="textInput4" value="" title="Необязательное поле"/>
+    <div id="msg4"></div>
+    <br><button type="submit" id="put" class="put_button" onclick="formValidation()">Отправить</button></br>
+    <div id="my_modal" class="modal">
+        <div class="modal_content">
+          <span class="close_modal_window">×</span>
+          <p class="head_modal">Погода по координатам</p>
+          <hr>
+          <p class="address"></p>
+          <hr>
+          <p class="temp"></p>
+          <hr>
+          <div></div>
+          <br><button id="coord_find" class="close_window" onclick="Close_window()">Закрыть</button></br>
+        </div>
+    </div>
+    <br><button type="button" id="clean" class="clean_button" onclick="CleanAll()">Очистить</button></br>
+    <script src="main.js"></script>
+</body>
+</html>
