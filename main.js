@@ -10,26 +10,26 @@ var geo_lon = "";
 // проверка вводимой информации. Заголовок задания не должен быть пустым
 let formValidation = () => {
   if (townInput.value === "") {
-      msg1.innerHTML = "Заполните поле!";
-      console.log("Запись провалена");
-      return false;
-    } else if (streetInput.value === ""){
-      msg2.innerHTML = "Заполните поле!";
-      console.log("Запись провалена");
-      return false;
-    } else if (houseInput.value === ""){
-      msg3.innerHTML = "Заполните поле!";
-      console.log("Запись провалена");
-      return false;
-    } else{
-      msg.innerHTML = "";
-      msg1.innerHTML = "";
-      msg2.innerHTML = "";
-      msg3.innerHTML = "";
-      msg4.innerHTML = "";
-      console.log("Успешная запись");
-      acceptData();
-    }
+    msg1.innerHTML = "Заполните поле!";
+    console.log("Запись провалена");
+    return false;
+  } else if (streetInput.value === ""){
+    msg2.innerHTML = "Заполните поле!";
+    console.log("Запись провалена");
+    return false;
+  } else if (houseInput.value === ""){
+    msg3.innerHTML = "Заполните поле!";
+    console.log("Запись провалена");
+    return false;
+  } else {
+    msg.innerHTML = "";
+    msg1.innerHTML = "";
+    msg2.innerHTML = "";
+    msg3.innerHTML = "";
+    msg4.innerHTML = "";
+    console.log("Успешная запись");
+    acceptData();
+  }
 };
 
 // массив данных
@@ -47,10 +47,10 @@ let acceptData = () => {
   });
 
   adress = textInput.value + ',' + textInput1.value + ',' + textInput2.value + ',' + textInput3.value + ',' + textInput4.value;
-    console.log(data);
-    console.log(adress);
-    alert('Данные отправлены!');
-    FindAll();
+  console.log(data);
+  console.log(adress);
+  alert('Данные отправлены!');
+  FindAll();
 };
 
 //очистка полей формы
@@ -92,13 +92,11 @@ let FindAll = () => {
         geo_lat=r.suggestions[0].data.geo_lat
         geo_lon=r.suggestions[0].data.geo_lon
         Coord_Find()
-      }
+      }})
     })
-  })
-
-  .catch(error => {
-    console.log("error", error)
-  });
+    .catch(error => {
+      console.log("error", error)
+    });
 }
 
 function Coord_Find(){
@@ -130,9 +128,8 @@ span.onclick = function () {
 }
 
 window.onclick = function (event) {
-  if (event.target == modal) {
+  if (event.target == modal)
     modal.style.display = "none";
-  }
 }
 
 function Close_window(){
