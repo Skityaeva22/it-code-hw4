@@ -5,8 +5,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-
+}
 
 .form {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -135,6 +134,7 @@ h1{
     height: 100%;
     overflow: auto;
 }
+
 .modal .modal_content {
     background-color: #f7e4b2;
     margin: 15% auto;
@@ -145,6 +145,7 @@ h1{
     width: 80%;
     z-index: 99999;
 }
+
 .modal .modal_content .close_modal_window {
     color: #aaa;
     float: right;

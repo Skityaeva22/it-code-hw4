@@ -7,7 +7,6 @@ let roomInput = document.getElementById("textInput4");
 var geo_lat = "";
 var geo_lon = "";
 
-
 // проверка вводимой информации. Заголовок задания не должен быть пустым
 let formValidation = () => {
   if (townInput.value === "") {
@@ -57,11 +56,11 @@ let acceptData = () => {
 //очистка полей формы
 let CleanAll = () =>
 {
-    textInput.value = "";
-    textInput1.value = "";
-    textInput2.value = "";
-    textInput3.value = "";
-    textInput4.value = "";
+  textInput.value = "";
+  textInput1.value = "";
+  textInput2.value = "";
+  textInput3.value = "";
+  textInput4.value = "";
 }
 
 (() => {
@@ -74,72 +73,66 @@ let FindAll = () => {
   var query = adress;
   console.log(query)
 
-var options = {
+  var options = {
     method: "POST",
     mode: "cors",
     headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-        "Authorization": "Token " + token
+      "Content-Type": "application/json",
+      "Accept": "application/json",
+      "Authorization": "Token " + token
     },
     body: JSON.stringify({query: query})
-}
+  }
 
-fetch(url, options)
-.then(response =>{
-    response.json()
-.then(r => {
-    if (r.suggestions.length>0){
+  fetch(url, options)
+    .then(response =>{
+      response.json()
+    .then(r => {
+      if (r.suggestions.length>0){
         geo_lat=r.suggestions[0].data.geo_lat
         geo_lon=r.suggestions[0].data.geo_lon
         Coord_Find()
-    }
-    }
-)
-})
+      }
+    })
+  })
 
-.catch(error => {
+  .catch(error => {
     console.log("error", error)
-});
+  });
 }
 
-
-
 function Coord_Find(){
-
-    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${geo_lat}&lon=${geo_lon}&appid=70f3a9c2d617493de79c5fec2b5612c5`)
-    .then(function(resp) {
-      return resp.json()
-    })
-    .then(function(data) {
-      console.log(data);
-      document.querySelector('.address').textContent = data.name;
-      document.querySelector('.temp').textContent = Math.round(data.main.temp - 273) + '°';
-        modal.style.display = "block";
-    })
-    .catch(function(e) {
-      console.log(e)
-    });
-
+  fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${geo_lat}&lon=${geo_lon}&appid=70f3a9c2d617493de79c5fec2b5612c5`)
+  .then(function(resp) {
+    return resp.json()
+  })
+  .then(function(data) {
+    console.log(data);
+    document.querySelector('.address').textContent = data.name;
+    document.querySelector('.temp').textContent = Math.round(data.main.temp - 273) + '°';
+      modal.style.display = "block";
+  })
+  .catch(function(e) {
+    console.log(e)
+  });
 } 
 
 var modal = document.getElementById("my_modal");
 var btn = document.getElementById("put");
 var span = document.getElementsByClassName("close_modal_window")[0];
 
-
 btn.onclick=function(){
-    formValidation()
+  formValidation()
 }
 
 span.onclick = function () {
-   modal.style.display = "none";
+  modal.style.display = "none";
 }
 
 window.onclick = function (event) {
-   if (event.target == modal) {
-       modal.style.display = "none";
-   }
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
 }
 
 function Close_window(){
