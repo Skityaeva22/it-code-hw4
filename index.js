@@ -13,11 +13,11 @@ let formValidation = () => {
     msg1.innerHTML = "Заполните поле!";
     console.log("Запись провалена");
     return false;
-  } else if (streetInput.value === ""){
+  } else if (streetInput.value === "") {
     msg2.innerHTML = "Заполните поле!";
     console.log("Запись провалена");
     return false;
-  } else if (houseInput.value === ""){
+  } else if (houseInput.value === "") {
     msg3.innerHTML = "Заполните поле!";
     console.log("Запись провалена");
     return false;
@@ -47,15 +47,14 @@ let acceptData = () => {
   });
 
   adress = textInput.value + ',' + textInput1.value + ',' + textInput2.value + ',' + textInput3.value + ',' + textInput4.value;
-  console.log(data);
-  console.log(adress);
-  alert('Данные отправлены!');
-  FindAll();
+    console.log(data);
+    console.log(adress);
+    alert('Данные отправлены!');
+    FindAll();
 };
 
 //очистка полей формы
-let CleanAll = () =>
-{
+let CleanAll = () => {
   textInput.value = "";
   textInput1.value = "";
   textInput2.value = "";
@@ -92,11 +91,13 @@ let FindAll = () => {
         geo_lat=r.suggestions[0].data.geo_lat
         geo_lon=r.suggestions[0].data.geo_lon
         Coord_Find()
-      }})
+      }
     })
-    .catch(error => {
-      console.log("error", error)
-    });
+  })
+
+  .catch(error => {
+    console.log("error", error)
+  });
 }
 
 function Coord_Find(){
